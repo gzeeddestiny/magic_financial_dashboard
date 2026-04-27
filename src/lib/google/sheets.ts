@@ -39,8 +39,8 @@ export async function batchGet(
     });
 
     return result;
-  } catch {
-    // If batchGet fails (e.g. missing tab), fall back to fetching each range individually
+  } catch (err) {
+    console.error("[sheets] batchGet failed:", err);
     const result: Record<string, string[][]> = {};
     for (const range of ranges) {
       try {
@@ -49,8 +49,8 @@ export async function batchGet(
           range,
         });
         result[range] = (response.data.values as string[][]) || [];
-      } catch {
-        // Tab doesn't exist or range is invalid — return empty array
+      } catch (innerErr) {
+        console.error(`[sheets] get(${range}) failed:`, innerErr);
         result[range] = [];
       }
     }
