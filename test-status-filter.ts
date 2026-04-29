@@ -45,7 +45,7 @@ function blRow(overrides: Partial<Record<number, string>> = {}): string[] {
     "",            // P=15 หมายเหตุ
   ];
   for (const [idx, val] of Object.entries(overrides)) {
-    row[Number(idx)] = val;
+    if (val !== undefined) row[Number(idx)] = val;
   }
   return row;
 }
