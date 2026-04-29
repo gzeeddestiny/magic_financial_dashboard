@@ -86,6 +86,11 @@ function isDateInRange(date: Date, range: DateRange): boolean {
 
 // ===== Helpers =====
 
+const EN_MONTHS: Record<string, number> = {
+  january:1, february:2, march:3, april:4, may:5, june:6,
+  july:7, august:8, september:9, october:10, november:11, december:12,
+};
+
 function parseThaiDate(dateStr: string): Date | null {
   if (!dateStr) return null;
   const trimmed = dateStr.trim();
@@ -104,6 +109,17 @@ function parseThaiDate(dateStr: string): Date | null {
     // Handle 2-digit year
     if (year < 100) year += 2000;
     if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+    const d = new Date(year, month - 1, day);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  // Handle English month name: "1 December 25" or "18 January 2026"
+  const enMatch = trimmed.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{2,4})$/);
+  if (enMatch) {
+    let day = Number(enMatch[1]);
+    const month = EN_MONTHS[enMatch[2].toLowerCase()];
+    let year = Number(enMatch[3]);
+    if (!month) return null;
+    if (year < 100) year += 2000;
     const d = new Date(year, month - 1, day);
     return isNaN(d.getTime()) ? null : d;
   }
