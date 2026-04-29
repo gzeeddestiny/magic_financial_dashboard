@@ -28,7 +28,7 @@ export function ProjectRanking({ data, variant }: ProjectRankingProps) {
             >
               <span className={cn(
                 "flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold",
-                variant === "top" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                variant === "top" ? "bg-green-500/20 text-green-700" : "bg-red-500/20 text-red-700"
               )}>
                 {variant === "top" ? i + 1 : items.length - i}
               </span>
@@ -42,9 +42,9 @@ export function ProjectRanking({ data, variant }: ProjectRankingProps) {
                   variant={p.status === "healthy" ? "default" : p.status === "warning" ? "secondary" : "destructive"}
                   className={cn(
                     "text-xs px-1.5 mt-0.5",
-                    p.status === "healthy" && "bg-green-500/20 text-green-400 border-green-500/30",
-                    p.status === "warning" && "bg-amber-500/20 text-amber-400 border-amber-500/30",
-                    p.status === "danger" && "bg-red-500/20 text-red-400 border-red-500/30"
+                    p.status === "healthy" && "bg-green-500/20 text-green-700 border-green-500/30",
+                    p.status === "warning" && "bg-amber-500/20 text-amber-700 border-amber-500/30",
+                    p.status === "danger" && "bg-red-500/20 text-red-700 border-red-500/30"
                   )}
                 >
                   {p.marginPercent.toFixed(0)}%

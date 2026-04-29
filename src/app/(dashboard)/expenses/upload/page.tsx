@@ -5,8 +5,15 @@ export default async function ExpenseUploadPage() {
   let projects: string[] = [];
 
   try {
-    const data = await getSheetData("BL_Master", "F2:F");
-    projects = [...new Set(data.map((row) => row[0]).filter(Boolean))].sort();
+    const data = await getSheetData("BL_Master", "F2:N");
+    projects = [
+      ...new Set(
+        data
+          .filter((row) => !["ยกเลิก", "ไม่อนุมัติ"].includes((row[8] || "").trim()))
+          .map((row) => row[0])
+          .filter(Boolean)
+      ),
+    ].sort();
   } catch {
     projects = [];
   }

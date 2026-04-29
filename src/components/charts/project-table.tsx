@@ -72,9 +72,9 @@ export function ProjectTable({ data }: { data: ProjectProfitability[] }) {
                   <TableCell>
                     <Badge className={cn(
                       "text-xs",
-                      p.status === "healthy" && "bg-green-500/20 text-green-400 border-green-500/30",
-                      p.status === "warning" && "bg-amber-500/20 text-amber-400 border-amber-500/30",
-                      p.status === "danger" && "bg-red-500/20 text-red-400 border-red-500/30"
+                      p.status === "healthy" && "bg-green-500/20 text-green-700 border-green-500/30",
+                      p.status === "warning" && "bg-amber-500/20 text-amber-700 border-amber-500/30",
+                      p.status === "danger" && "bg-red-500/20 text-red-700 border-red-500/30"
                     )}>
                       {p.status === "healthy" ? "🟢 ปกติ" : p.status === "warning" ? "🟡 เฝ้าระวัง" : "🔴 ขาดทุน"}
                     </Badge>

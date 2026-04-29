@@ -58,6 +58,7 @@ function detectDataBoundary(expenses: string[][], income: string[][]): DataBound
   }
 
   for (const row of income) {
+    if (row[17] === "ยกเลิก" || row[17] === "ไม่อนุมัติ") continue;
     const date = parseThaiDate(row[1]);
     if (!date) continue;
     const key = getMonthKey(date);
@@ -192,6 +193,7 @@ export async function getKpiData(range?: DateRange): Promise<KpiData> {
   let lastMonthExpenses = 0;
 
   for (const row of income) {
+    if (row[17] === "ยกเลิก" || row[17] === "ไม่อนุมัติ") continue;
     const date = parseThaiDate(row[1]);
     const amount = parseNumber(row[11]);
     if (!date) continue;
@@ -260,6 +262,7 @@ export async function getMonthlyTrends(range?: DateRange): Promise<MonthlyTrend[
   });
 
   for (const row of income) {
+    if (row[17] === "ยกเลิก" || row[17] === "ไม่อนุมัติ") continue;
     const date = parseThaiDate(row[1]);
     if (!date) continue;
     const key = getMonthKey(date);
@@ -296,6 +299,7 @@ export async function getProjectProfitability(range?: DateRange): Promise<Projec
   const clientByProject: Record<string, string> = {};
 
   for (const row of income) {
+    if (row[17] === "ยกเลิก" || row[17] === "ไม่อนุมัติ") continue;
     const date = parseThaiDate(row[1]); // col B
     if (!date || !isDateInRange(date, r)) continue;
 

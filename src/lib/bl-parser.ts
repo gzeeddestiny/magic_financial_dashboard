@@ -89,14 +89,14 @@ function parseCommaNumber(val: string | undefined): number {
 
 // ===== BL Row Parsing =====
 
-const CANCELLED_STATUS = "ยกเลิก";
+const SKIP_STATUSES = new Set(["ยกเลิก", "ไม่อนุมัติ"]);
 
 export function parseBLRows(raw: string[][]): BLRow[] {
   const rows: BLRow[] = [];
 
   for (const row of raw) {
     const status = (row[13] || "").trim();
-    if (status === CANCELLED_STATUS) continue; // skip cancelled
+    if (SKIP_STATUSES.has(status)) continue;
 
     const projectName = (row[5] || "").trim();
     if (!projectName) continue; // skip rows without project name
@@ -379,6 +379,7 @@ export function deriveProjects(blRows: BLRow[]): DerivedProject[] {
 export function buildIncomeByProject(incomeRaw: string[][]): Map<string, number> {
   const map = new Map<string, number>();
   for (const row of incomeRaw) {
+    if (row[17] === "ยกเลิก" || row[17] === "ไม่อนุมัติ") continue;
     const project = (row[4] || "").trim(); // col E
     const amount = parseCommaNumber(row[11]);  // col L
     if (project && amount > 0) {

@@ -68,8 +68,8 @@ export function NetCashOutlookChart({ data }: { data: NetCashOutlook[] }) {
             <span
               className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold ${
                 totalNet >= 0
-                  ? "bg-green-500/10 text-green-400"
-                  : "bg-red-500/10 text-red-400"
+                  ? "bg-green-500/10 text-green-700"
+                  : "bg-red-500/10 text-red-700"
               }`}
             >
               สุทธิ {totalNet < 0 ? "-" : ""}฿{(Math.abs(totalNet) / 1000).toFixed(0)}K

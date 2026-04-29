@@ -88,17 +88,17 @@ export function RevenueExpenseTrend({ data }: { data: MonthlyTrend[] }) {
 
           {/* Summary pills */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-green-500/10 px-2.5 py-1 text-xs font-semibold text-green-500">
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-green-500/10 px-2.5 py-1 text-xs font-semibold text-green-700">
               รับ ฿{(totalRevenue / 1000).toFixed(0)}K
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-red-500/10 px-2.5 py-1 text-xs font-semibold text-red-500">
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-red-500/10 px-2.5 py-1 text-xs font-semibold text-red-700">
               จ่าย ฿{(totalExpenses / 1000).toFixed(0)}K
             </span>
             <span
               className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold ${
                 totalNet >= 0
-                  ? "bg-purple-500/10 text-purple-400"
-                  : "bg-red-500/10 text-red-400"
+                  ? "bg-purple-500/10 text-purple-700"
+                  : "bg-red-500/10 text-red-700"
               }`}
             >
               สุทธิ {totalNet < 0 ? "-" : ""}฿{(Math.abs(totalNet) / 1000).toFixed(0)}K

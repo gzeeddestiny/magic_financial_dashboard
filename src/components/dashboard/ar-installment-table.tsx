@@ -13,7 +13,7 @@ interface ArTableProps {
 function StatusBadge({ status, autoMatched }: { status: ArInstallmentRow["status"]; autoMatched: boolean }) {
   if (status === "Paid") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 text-emerald-700 border border-emerald-500/20">
         <CheckCircle2 className="h-3 w-3" />
         รับเงินแล้ว{autoMatched ? " (INV)" : ""}
       </span>
@@ -21,14 +21,14 @@ function StatusBadge({ status, autoMatched }: { status: ArInstallmentRow["status
   }
   if (status === "Overdue") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-500/15 text-red-400 border border-red-500/20">
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-500/15 text-red-700 border border-red-500/20">
         <AlertTriangle className="h-3 w-3" />
         เกินกำหนด
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/20">
+    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-amber-500/15 text-amber-700 border border-amber-500/20">
       <Clock className="h-3 w-3" />
       รอรับเงิน
     </span>
@@ -65,7 +65,7 @@ function ReminderButton({ row }: { row: ArInstallmentRow }) {
             }
           });
         }}
-        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium bg-purple-500/15 text-purple-300 border border-purple-500/20 hover:bg-purple-500/25 hover:text-purple-200 transition-colors disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium bg-purple-500/10 text-purple-700 border border-purple-500/25 hover:bg-purple-500/20 hover:text-purple-800 transition-colors disabled:opacity-50"
       >
         {isPending ? (
           <Loader2 className="h-3 w-3 animate-spin" />
@@ -75,7 +75,7 @@ function ReminderButton({ row }: { row: ArInstallmentRow }) {
         {isPending ? "กำลังส่ง..." : "แจ้งทีม"}
       </button>
       {sendCount > 0 && (
-        <span className="text-[10px] text-emerald-400/70">
+        <span className="text-[10px] text-emerald-700/80">
           แจ้งแล้ว {sendCount} ครั้ง
         </span>
       )}
@@ -91,9 +91,9 @@ export function ArInstallmentTable({ data }: ArTableProps) {
   const visible = showPaid ? data : unpaid;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+    <div className="rounded-xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-border">
         <div>
           <h3 className="text-base font-semibold">รายการหนี้ค้างรับ (AR)</h3>
           <p className="text-xs text-muted-foreground mt-0.5">
@@ -113,7 +113,7 @@ export function ArInstallmentTable({ data }: ArTableProps) {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-muted-foreground text-xs">
+            <tr className="border-b border-border text-muted-foreground text-xs">
               <th className="px-4 py-3 text-left font-medium">โปรเจกต์</th>
               <th className="px-4 py-3 text-left font-medium">BL / งวด</th>
               <th className="px-4 py-3 text-right font-medium">ยอด (฿)</th>
@@ -122,7 +122,7 @@ export function ArInstallmentTable({ data }: ArTableProps) {
               <th className="px-4 py-3 text-center font-medium">แจ้งเตือน</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-border/60">
             {visible.length === 0 ? (
               <tr>
                 <td colSpan={6} className="px-4 py-8 text-center text-muted-foreground text-sm">
@@ -135,7 +135,7 @@ export function ArInstallmentTable({ data }: ArTableProps) {
                 return (
                   <tr
                     key={key}
-                    className={`hover:bg-white/5 transition-colors ${row.status === "Paid" ? "opacity-40" : ""}`}
+                    className={`hover:bg-accent/30 transition-colors ${row.status === "Paid" ? "opacity-40" : ""}`}
                   >
                     {/* Project */}
                     <td className="px-4 py-3">
@@ -151,7 +151,7 @@ export function ArInstallmentTable({ data }: ArTableProps) {
                     <td className="px-4 py-3">
                       <div className="font-mono text-xs text-muted-foreground">{row.blNumber}</div>
                       {row.totalInstallments > 1 && (
-                        <div className="text-xs text-purple-400">
+                        <div className="text-xs text-purple-700">
                           งวด {row.installmentNo}/{row.totalInstallments}
                         </div>
                       )}
@@ -166,10 +166,10 @@ export function ArInstallmentTable({ data }: ArTableProps) {
                     <td className="px-4 py-3 text-center">
                       <div className="text-xs">{formatDate(row.dueDateISO)}</div>
                       {row.status !== "Paid" && row.daysOverdue > 0 && (
-                        <div className="text-xs text-red-400">เกิน {row.daysOverdue} วัน</div>
+                        <div className="text-xs text-red-700">เกิน {row.daysOverdue} วัน</div>
                       )}
                       {row.status !== "Paid" && row.daysOverdue <= 0 && (
-                        <div className="text-xs text-emerald-400">อีก {Math.abs(row.daysOverdue)} วัน</div>
+                        <div className="text-xs text-emerald-700">อีก {Math.abs(row.daysOverdue)} วัน</div>
                       )}
                     </td>
 
@@ -191,7 +191,7 @@ export function ArInstallmentTable({ data }: ArTableProps) {
       </div>
 
       {/* Footer note */}
-      <div className="px-5 py-3 border-t border-white/10 text-xs text-muted-foreground">
+      <div className="px-5 py-3 border-t border-border text-xs text-muted-foreground">
         กดปุ่ม "แจ้งทีม" → สร้าง Google Task + ส่ง Calendar invite (email) ไปยังทีมที่เกี่ยวข้อง
       </div>
     </div>

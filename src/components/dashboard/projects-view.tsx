@@ -86,13 +86,13 @@ export function ProjectsView({ data, types, pms }: ProjectsViewProps) {
           <h2 className="text-xl font-semibold">กำลังดำเนินงาน</h2>
           <span className="text-sm text-muted-foreground">({running.length} โปรเจกต์)</span>
           <div className="flex gap-2 ml-auto">
-            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-green-500/10 text-green-400 border border-green-500/20">
+            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-green-500/10 text-green-700 border border-green-500/20">
               <span className="h-1.5 w-1.5 rounded-full bg-green-400" />{healthyCount} ปกติ
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-amber-500/10 text-amber-700 border border-amber-500/20">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />{warningCount} เฝ้าระวัง
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-red-500/10 text-red-400 border border-red-500/20">
+            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs bg-red-500/10 text-red-700 border border-red-500/20">
               <span className="h-1.5 w-1.5 rounded-full bg-red-400" />{dangerCount} ขาดทุน
             </span>
           </div>
@@ -102,7 +102,7 @@ export function ProjectsView({ data, types, pms }: ProjectsViewProps) {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-white/10" />
+      <div className="border-t border-border" />
 
       {/* ===== Closed Projects ===== */}
       <div className="space-y-6">

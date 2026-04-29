@@ -42,10 +42,10 @@ export function KpiCard({
             <div
               className={cn(
                 "rounded-lg p-2 cursor-default",
-                variant === "profit" && "bg-green-500/10 text-green-400",
-                variant === "loss" && "bg-red-500/10 text-red-400",
-                variant === "warning" && "bg-amber-500/10 text-amber-400",
-                variant === "default" && "bg-purple-500/10 text-purple-400"
+                variant === "profit" && "bg-green-500/10 text-green-700",
+                variant === "loss" && "bg-red-500/10 text-red-700",
+                variant === "warning" && "bg-amber-500/15 text-amber-700",
+                variant === "default" && "bg-purple-500/10 text-purple-700"
               )}
             >
               {icon}
@@ -66,7 +66,7 @@ export function KpiCard({
               <span
                 className={cn(
                   "inline-flex items-center gap-0.5 font-semibold text-base",
-                  trend.isPositive ? "text-green-400" : "text-red-400"
+                  trend.isPositive ? "text-green-700" : "text-red-700"
                 )}
               >
                 <span className="text-base leading-none">

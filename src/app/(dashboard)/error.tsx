@@ -15,7 +15,7 @@ export default function DashboardError({
       <div className="glass-card rounded-2xl p-10 max-w-md text-center space-y-5">
         <div className="flex justify-center">
           <div className="rounded-full bg-red-500/10 p-4">
-            <AlertTriangle className="h-10 w-10 text-red-400" />
+            <AlertTriangle className="h-10 w-10 text-red-700" />
           </div>
         </div>
         <div className="space-y-2">

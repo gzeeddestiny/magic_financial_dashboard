@@ -11,7 +11,7 @@ export function AnomalyTable({ data }: { data: ExpenseAnomaly[] }) {
     <Card className="glass-card">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5 text-amber-400" />
+          <AlertTriangle className="h-5 w-5 text-amber-700" />
           <CardTitle className="text-lg">Recent Anomalies</CardTitle>
         </div>
         <p className="text-base text-muted-foreground">
@@ -48,14 +48,14 @@ export function AnomalyTable({ data }: { data: ExpenseAnomaly[] }) {
                         {item.category}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-base font-semibold text-red-400 tabular-nums whitespace-nowrap">
+                    <TableCell className="text-base font-semibold text-red-700 tabular-nums whitespace-nowrap">
                       ฿{item.amount.toLocaleString()}
                     </TableCell>
                     <TableCell className="text-sm text-muted-foreground max-w-[180px] truncate">
                       {item.description}
                     </TableCell>
                     <TableCell>
-                      <Badge className="text-xs bg-red-500/20 text-red-400 border-red-500/30">
+                      <Badge className="text-xs bg-red-500/20 text-red-700 border-red-500/30">
                         +{item.deviation}%
                       </Badge>
                     </TableCell>
